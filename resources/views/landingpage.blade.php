@@ -2,6 +2,7 @@
 <head>
     <title>Full Screen Landing Page</title>
     <!--link rel="stylesheet" href="{{asset('css/app.css')}}"-->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <style>
     @import url('https://fonts.googleapis.com/css?family=Raleway');
     @import url('https://fonts.googleapis.com/css?family=Oswald');
@@ -17,7 +18,7 @@
         height: 100%;
         width: 100%;
         margin: auto;
-        background: url("http://localhost:8890/FoodforAll/public/assets/background.jpg");
+        background: url({{ asset('assets/background.jpg') }});
         display: table;
         top: 0;
         background-size: cover;
@@ -88,12 +89,13 @@
     <div class="outer">
     <a class="login" href="#">Login</a>
     </div>
+
     <div class="inner">
         <div class="content">
         <h1>Food for All</h1>
         <a class="cta" href="#">Get Started</a>
         </div>
     </div>
-</section>=
+</section>
 </body>
 </html>
