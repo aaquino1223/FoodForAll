@@ -1,21 +1,99 @@
 <!DOCTYPE html>
 <head>
     <title>Full Screen Landing Page</title>
-    <link rel="stylesheet" type= "text/css" href="{{ asset('css/app.css')}}">
+    <!--link rel="stylesheet" href="{{asset('css/app.css')}}"-->
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Raleway');
+    @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .intro {
+        height: 100%;
+        width: 100%;
+        margin: auto;
+        background: url("http://localhost:8890/FoodforAll/public/assets/background.jpg");
+        display: table;
+        top: 0;
+        background-size: cover;
+    }
+
+    .intro .inner {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        max-width: none;
+    }
+    .content {
+        max-width: 500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .login {
+        font-family: 'Oswald', sans-serif;
+        color: #ffd84d; /*to confirm*/
+        font-size: 110%;
+        padding: 20px 10px;
+        text-decoration: none;
+    }
+
+    .login:hover {
+        color: #fff;
+    }
+
+    .content h1 {
+        font-family: 'Raleway', sans-serif;
+        color: #F9F3F4; /*Change Color*/
+        text-shadow: 0px 0px 300px #000; /*optional*/
+        font-size: 500%;
+    }
+
+    .cta {
+        border-radius: 9px;
+        font-family: 'Oswald', sans-serif;
+        background-color: #e6b400;
+        color: #fff;
+        font-size: 135%;
+        padding: 10px 20px;
+        border: solid #e6b400 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    .cta:hover {
+        color: #fff;
+        border: solid #fff 3px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .content h1 {
+            font-size: 250%;
+        }
+        .cta {
+            font-size: 110%;
+            padding: 7px 15px;
+        }
+    }
+
+</style>
 </head>
 <body>
 <section class="intro">
-    <div class="inner">
-        <a class="login" href="#">Login</a>
-        <div class="content"></div>
-        <h1>FoodLink</h1>
-        <a class="cta" href="#">Get Started</a>
+    <div class="outer">
+    <a class="login" href="#">Login</a>
     </div>
-</section>
-<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-    software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <div class="inner">
+        <div class="content">
+        <h1>Food for All</h1>
+        <a class="cta" href="#">Get Started</a>
+        </div>
+    </div>
+</section>=
 </body>
 </html>
