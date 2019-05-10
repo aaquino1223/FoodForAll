@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Full Screen Landing Page</title>
+    <title>FoodforAll</title>
     <!--link rel="stylesheet" href="{{asset('css/app.css')}}"-->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <style>

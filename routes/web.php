@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('landingpage');
 });
 
+Route::get('/isorg', function () {
+    return view('isOrg');
+});
+
 
 Route::resource('/profile', 'ProfileController');
 
