@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -13,8 +14,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
-        return redirect('welcome');
+        $user = auth()->user();
+        $posts = $user->posts()->orderBy('PostDate', 'DESC')->get();
+        return view('profile.index', compact('posts', 'user'));
     }
 
     /**
@@ -41,12 +43,12 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('profile.index', compact('user'));
     }
 
     /**

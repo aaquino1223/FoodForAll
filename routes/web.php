@@ -20,7 +20,7 @@ Route::get('/isorg', function () {
 });
 
 
-Route::resource('/profile', 'ProfileController');
+Route::resource('/profile', 'ProfileController')->middleware('auth');
 
 Auth::routes();
 

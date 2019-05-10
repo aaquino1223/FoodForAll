@@ -35,4 +35,5 @@ class Post extends Model
      */
     protected $fillable = ['UserId', 'PostTypeId', 'Title', 'Message', 'PostDate', 'ViewRestrictionTypeId'];
 
+    protected $dates = ['PostDate'];
 }
