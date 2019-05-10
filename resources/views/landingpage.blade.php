@@ -93,7 +93,7 @@
     <div class="inner">
         <div class="content">
         <h1>Food for All</h1>
-        <a class="cta" href="#">Get Started</a>
+        <a class="cta" href="{{asset('/isorg')}}">Get Started</a>
         </div>
     </div>
 </section>
