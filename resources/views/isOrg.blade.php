@@ -13,7 +13,8 @@
                     </div>
                     <img class="img-fluid" src="{{asset('assets/user.svg')}}" alt="Self">
                     <div class="card-body">
-                        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Select</button>
+                        <form action="/register" method="POST" id="self_select"></form>
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="self_select" value="Submit">Select</button>
                     </div>
                 </div>
                 <div class="card mb-4 box-shadow">
@@ -22,7 +23,8 @@
                     </div>
                     <img class="img-fluid" src="{{asset('assets/briefcase.svg')}}" alt="business">
                     <div class="card-body">
-                        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Select</button>
+                        <form action="/register" method="POST" id="business_select"></form>
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="business_select" value="Submit">Select</button>
                     </div>
                 </div>
                 <div class="card mb-4 box-shadow">
@@ -31,7 +33,8 @@
                     </div>
                     <img class="img-fluid" src="{{asset('assets/heart.svg')}}" alt="Nonprofit">
                     <div class="card-body">
-                        <button type="button" class="btn btn-lg btn-block btn-outline-primary">Select</button>
+                        <form action="/register" method="POST" id="nonprofit_select"></form>
+                        <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="nonprofit_select" value="Submit">Select</button>
                     </div>
                 </div>
             </div>

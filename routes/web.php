@@ -16,9 +16,14 @@ Route::get('/', function () {
 });
 
 Route::get('/isorg', function () {
-    return view('isOrg');
+    return view('isorg');
 });
 
+Route::post('/isorg', function ($request) {
+
+
+    return redirect('register');
+});
 
 Route::resource('/profile', 'ProfileController');
 
