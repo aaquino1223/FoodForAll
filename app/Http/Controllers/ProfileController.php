@@ -43,12 +43,14 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  User  $user
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(int $id)
     {
-        return view('profile.index', compact('user'));
+        $user = User::find($id);
+        $posts = $user->posts()->orderBy('PostDate', 'DESC')->get();
+        return view('profile.index', compact('user', 'posts'));
     }
 
     /**
