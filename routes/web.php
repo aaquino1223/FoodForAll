@@ -27,6 +27,11 @@ Route::get('/onboarding/profile', function () {
     return view('profilepic');
 })->middleware('auth');
 
+Route::get('/newpost', function () {
+    $CreatePost = true;
+    return redirect()->back(compact('CreatePost'));
+})->middleware('auth');
+
 Route::post('/isorg', function ($request) {
 
 
