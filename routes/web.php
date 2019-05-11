@@ -19,6 +19,14 @@ Route::get('/isorg', function () {
     return view('isorg');
 });
 
+Route::get('/onboarding/location', function () {
+    return view('location');
+})->middleware('auth');
+
+Route::get('/onboarding/profile', function () {
+    return view('profilepic');
+})->middleware('auth');
+
 Route::post('/isorg', function ($request) {
 
 
