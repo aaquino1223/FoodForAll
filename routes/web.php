@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('landingpage');
 });
@@ -21,7 +21,7 @@ Route::get('/welcome', function () {
 
 Route::get('/isorg', function () {
     return view('isorg');
-});
+})->middleware('guest');
 
 Route::get('/onboarding/location', function () {
     return view('location');
@@ -37,8 +37,9 @@ Route::post('/isorg', function ($request) {
     return redirect('register');
 });
 
-Route::resource('/profile', 'ProfileController')->middleware('auth');
-Route::resource('/profile/{profile}/associates', 'AssociateController')->middleware('auth');
+Route::get('/profile', 'ProfileController@index')->middleware('auth');
+Route::get('/profile/{profile}', 'ProfileController@show')->middleware('auth');
+Route::get('/profile/{profile}/associates', 'AssociateController@index')->middleware('auth');
 
 Auth::routes();
 

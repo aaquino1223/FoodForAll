@@ -5,17 +5,15 @@
         </button>
     </div>
     <div class="card-body">
-        <form>
-            <div class="form-group">
-                <input type="text" class="form-control" id="fooditem" aria-describedby="whichfood" placeholder="Which food item are you donating?">
-            </div>
-            <div class="form-group">
-                <input type="number" min="1" class="form-control" id="fooditem" aria-describedby="howmany" placeholder="How many?">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" id="fooditem" aria-describedby="whatmeasure" placeholder="In what measure? e.g. servings, oz, lbs">
-            </div>
-        </form>
+        <div class="form-group">
+            <input type="text" class="form-control" id="fooditem" aria-describedby="whichfood" placeholder="Which food item are you donating?">
+        </div>
+        <div class="form-group">
+            <input type="number" min="1" class="form-control" id="fooditem" aria-describedby="howmany" placeholder="How many?">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="fooditem" aria-describedby="whatmeasure" placeholder="In what measure? e.g. servings, oz, lbs">
+        </div>
     </div>
 </div>
 <div class="row">

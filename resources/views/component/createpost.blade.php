@@ -17,8 +17,11 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab">
-                        @component('component.donationform')
-                        @endcomponent
+                        <form method="POST" action="{{url('/post/create')}}">
+                            @csrf
+                            <div id="donationForm">
+                            </div>
+                        </form>
                             <!--div class="card bg-light mb-3" style="max-width: 36rem">
                                 <div class="card-header">Food Item #1
                                     <button type="button" class="close" aria-label="Close">
