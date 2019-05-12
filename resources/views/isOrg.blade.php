@@ -3,7 +3,8 @@
 @section('content')
 
     <div class="text-center h1 mb-4">I want to sign up for my</div>
-    <div class="card-deck" style="width: 70%">
+    <div class="row justify-content-center">
+        <div class="card-deck" style="width: 70%">
         <div class="card">
             <img src="{{asset('assets/user.svg')}}" class="card-img-top align-self-center mt-4" style="max-width: 50%" alt="self">
             <div class="card-body">
@@ -28,6 +29,7 @@
                 <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="business_select" value="Submit">Select</button>
             </div>
         </div>
+    </div>
     </div>
     <!--div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Select Profile</h1>

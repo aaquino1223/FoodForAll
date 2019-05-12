@@ -21,18 +21,18 @@
 </div>
 <div class="row">
     <div class="col-8">
-    <button type="button" class="btn btn-default" aria-label="Picture" style="width: 50px; height: 50px">
-        <img src="{{asset('/assets/camera.svg')}}" class="img-fluid" alt="Picture">
-    </button>
-    <button type="button" class="btn btn-default" aria-label="Video" style="width: 50px; height: 50px">
-        <img src="{{asset('/assets/video-camera.svg')}}" class="img-fluid" alt="Video">
-    </button>
-    <button type="button" class="btn btn-default" aria-label="Location" style="width: 50px; height: 50px">
-        <img src="{{asset('/assets/pin.svg')}}" class="img-fluid" alt="Location">
-    </button>
+        <button type="button" class="btn btn-default" aria-label="Picture" style="width: 50px; height: 50px">
+            <img src="{{asset('/assets/camera.svg')}}" class="img-fluid" alt="Picture">
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Video" style="width: 50px; height: 50px">
+            <img src="{{asset('/assets/video-camera.svg')}}" class="img-fluid" alt="Video">
+        </button>
+        <button type="button" class="btn btn-default" aria-label="Location" style="width: 50px; height: 50px">
+            <img src="{{asset('/assets/pin.svg')}}" class="img-fluid" alt="Location">
+        </button>
     </div>
     <div class="col-4 align-self-center">
-    <button type="button" class="btn btn-link">Cancel</button>
-    <button type="submit" class="btn btn-primary">Post</button>
+        <button type="button" class="btn btn-link">Cancel</button>
+        <button type="submit" class="btn btn-primary">Post</button>
     </div>
 </div>

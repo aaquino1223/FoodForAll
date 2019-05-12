@@ -33,6 +33,8 @@
 
             .full-height {
                 height: 100vh;
+                background-color: rgba(0,0,0,0.15); /* Black background with opacity */
+
             }
 
             .flex-center {
@@ -96,7 +98,10 @@
                 <div class="title m-b-md">
                     Food for All
                 </div>
-                <div class="links">
+                <!--div>
+                    <h1>A social network for the food insecure and those who want to help</h1>
+                </div-->
+                <!--div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
@@ -104,7 +109,7 @@
                     <a href="https://nova.laravel.com">Nova</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+                </div-->
             </div>
         </div>
     </section>
