@@ -53,7 +53,17 @@
                                 <a class="nav-link" href="{{ url('/newpost') }}" data-toggle="modal" data-target="#createPost">{{ __('Create Post') }}</a>
 {{--                                <a class="nav-link" href="{{ url('/newpost') }}">{{ __('Create Post') }}</a>--}}
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="nav-item align-self-center ml-4">
+                                <a id="navbarAlerts" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ asset('assets/group.svg')}}" style="width: 25px; height: 25px;"><span class="caret"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item align-self-center ml-3 mr-2">
+                                <a id="navbarAlerts" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ asset('assets/notification.svg')}}" style="width: 25px; height: 25px;"><span class="caret"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown ml-2">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->UserName }} <span class="caret"></span>
                                 </a>
@@ -64,7 +74,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
