@@ -80,8 +80,8 @@
             <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="createPost" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                                @component('component.createpost')
-                                @endcomponent
+                        @component('component.createpost')
+                        @endcomponent
                     </div>
                 </div>
             </div>
