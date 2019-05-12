@@ -15,13 +15,18 @@
                     <div class="col-md-6">
                         <input id="address" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('address') }}" required autocomplete="address" autofocus>
                     </div>
-                    <div class="form-group row mb-0">
+                    <div class="row col-4 float-right">
+                        <button type="button" class="btn btn-link">Skip</button>
+                        <button type="submit" class="btn btn-primary">
+                        {{ __('Next') }}
+                    </div>
+                    <!--div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="button" class="btn btn-link">Skip</button>
                             <button type="submit" class="btn btn-primary">
                             {{ __('Next') }}
                         </div>
-                    </div>
+                    </div-->
                 </div>
             </div>
         </div>

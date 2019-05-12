@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="text-center h1 mb-4">I want to sign up for my</div>
-    <div class="card-deck" style="width: 90%">
+    <div class="card-deck" style="width: 70%">
         <div class="card">
             <img src="{{asset('assets/user.svg')}}" class="card-img-top align-self-center mt-4" style="max-width: 50%" alt="self">
             <div class="card-body">

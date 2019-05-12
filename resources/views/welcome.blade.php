@@ -12,12 +12,23 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                /*background-color: #fff;*/
+                /*color: #636b6f;*/
+                color: #ffd84d;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+            }
+
+            .intro {
+                height: 100%;
+                width: 100%;
+                margin: auto;
+                background: url({{ asset('assets/background.jpg') }});
+                display: table;
+                top: 0;
+                background-size: cover;
             }
 
             .full-height {
@@ -49,7 +60,8 @@
             }
 
             .links > a {
-                color: #636b6f;
+                /*color: #636b6f;*/
+                color: #ffd84d;
                 padding: 0 25px;
                 font-size: 13px;
                 font-weight: 600;
@@ -64,6 +76,7 @@
         </style>
     </head>
     <body>
+    <section class="intro">
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
@@ -81,9 +94,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Food for All
                 </div>
-
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>
@@ -95,5 +107,6 @@
                 </div>
             </div>
         </div>
+    </section>
     </body>
 </html>
