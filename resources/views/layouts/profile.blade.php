@@ -19,10 +19,11 @@
 
                     <div class="row justify-content-sm-end">
                         <div class="col-6">
-                            <div class="btn-group" role="group" aria-label="friends and photos">
-                                <a href="{{url('/' . $user->UserId . '/friends')}}" class="btn btn-light">Associates {{$user->associates()->count()}}</a>
-                                <a href="{{url('/' . $user->UserId . '/followers')}}" class="btn btn-light">Followers</a>
-                                <a href="{{url('/' . $user->UserId . '/photos')}}" class="btn btn-light">Photos</a>
+                            <div class="btn-group" role="group" aria-label="profile navigation">
+                                <a href="{{url('/profile/' . $user->UserId)}}" class="btn btn-light">Timeline</a>
+                                <a href="{{url('/profile/' . $user->UserId . '/associates')}}" class="btn btn-light">Associates {{$user->associates()->count()}}</a>
+                                <a href="{{url('/profile/' . $user->UserId . '/followers')}}" class="btn btn-light">Followers</a>
+                                <a href="{{url('/profile/' . $user->UserId . '/photos')}}" class="btn btn-light">Photos</a>
                             </div>
                         </div>
                     </div>
