@@ -1,7 +1,5 @@
 <form>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="card w-50">
+        <div class="card">
             <div class="card-header">
                 <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
                     <li class="nav-item">
@@ -66,7 +64,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 </div>
 </form>

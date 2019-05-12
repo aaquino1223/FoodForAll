@@ -50,7 +50,8 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/newpost') }}">{{ __('Create Post') }}</a>
+                                <a class="nav-link" href="{{ url('/newpost') }}" data-toggle="modal" data-target="#createPost">{{ __('Create Post') }}</a>
+{{--                                <a class="nav-link" href="{{ url('/newpost') }}">{{ __('Create Post') }}</a>--}}
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -76,10 +77,14 @@
         </nav>
 
         <main class="py-4">
-{{--            @isset($CreatePost)--}}
-                @component('component.createpost')
-                @endcomponent
-{{--            @endisset--}}
+            <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="createPost" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                                @component('component.createpost')
+                                @endcomponent
+                    </div>
+                </div>
+            </div>
             @yield('content')
         </main>
     </div>
