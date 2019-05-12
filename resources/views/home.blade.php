@@ -5,13 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @foreach ($posts as $post)
-                @component('component.post')
-                    @slot('title')
-                        {{$post->Title}}
-                    @endslot
-                    @slot('message')
-                        {{$post->Message}}
-                    @endslot
+                @component('component.post', ['post' => $post])
                 @endcomponent
             @endforeach
         </div>
