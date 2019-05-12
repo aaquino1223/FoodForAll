@@ -17,7 +17,9 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-donation" role="tabpanel" aria-labelledby="pills-donation-tab">
-                            <div class="card bg-light mb-3" style="max-width: 36rem">
+                        @component('component.donationform')
+                        @endcomponent
+                            <!--div class="card bg-light mb-3" style="max-width: 36rem">
                                 <div class="card-header">Food Item #1
                                     <button type="button" class="close" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
@@ -47,7 +49,7 @@
                         <button type="button" class="btn btn-link">Cancel</button>
                         <button type="submit" class="btn btn-primary">Next</button>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                     <div class="tab-pane fade" id="pills-event" role="tabpanel" aria-labelledby="pills-event-tab">
                         @component('component.postform')
