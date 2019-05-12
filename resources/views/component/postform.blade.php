@@ -1,6 +1,6 @@
 <div class="row justify-content-end">
     <div class="col-7 align-self-center">
-    <label for="dropdownMenuButton">Who Can See?</label>
+    <label for="dropdownMenuButton">Who can see?</label>
     </div>
     <div class="dropdown mb-2 col-4 align-self-center">
         <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
