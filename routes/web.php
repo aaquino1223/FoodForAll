@@ -38,6 +38,7 @@ Route::post('/isorg', function ($request) {
 });
 
 Route::resource('/profile', 'ProfileController')->middleware('auth');
+Route::resource('/profile/{profile}/associates', 'AssociateController')->middleware('auth');
 
 Auth::routes();
 
