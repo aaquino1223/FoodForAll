@@ -75,6 +75,22 @@ class User extends Model implements  AuthenticatableContract
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    public function followers()
+    {
+        return $this->hasMany('App\Follower', 'UserId', 'UserId');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function follows()
+    {
+        return $this->hasMany('App\Follower', 'FollowerId', 'UserId');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function posts()
     {
         return $this->hasMany('App\Post', 'UserId', 'UserId');

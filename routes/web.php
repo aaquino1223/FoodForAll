@@ -40,6 +40,7 @@ Route::post('/isorg', function ($request) {
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
 Route::get('/profile/{profile}', 'ProfileController@show')->middleware('auth');
 Route::get('/profile/{profile}/associates', 'AssociateController@index')->middleware('auth');
+Route::get('/profile/{profile}/followers', 'FollowerController@index')->middleware('auth');
 
 Auth::routes();
 
