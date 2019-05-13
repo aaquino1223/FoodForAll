@@ -1,3 +1,14 @@
+<script>
+    function toggle() {
+        var x = document.getElementById("commentForm");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+
 <div class="card" style="margin-bottom: 20px">
     <div class="card-header">
         <div class="row">
@@ -30,20 +41,20 @@
                 </button>
             </div>
             <div class="col-6 text-center">
-                <button type="button" class="btn btn-default" aria-label="Comment" style="width: 50px; height: 50px">
+                <button type="button" onclick="toggle()" class="btn btn-default" aria-label="Comment" style="width: 50px; height: 50px">
                     <img src="{{asset('/assets/comment.svg')}}" class="img-fluid" alt="comment">
                 </button>
                 <Label aria-label="Comment">Comment</Label>
             </div>
         </div>
     </div>
-    <div class="card-footer">
+    <div class="card-footer" id="commentForm">
         <input class="form-control" type="text" placeholder="Write a comment...">
-        <div class="row">
+        <!--div class="row">
             <div class="col-4">
                 <button type="button" class="btn btn-link">Like</button>
                 <button type="button" class="btn btn-link">Dislike</button>
             </div>
-        </div>
+        </div-->
     </div>
 </div>
