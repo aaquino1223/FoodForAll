@@ -12,10 +12,6 @@
 */
 use Illuminate\Http\Request;
 Route::get('/', function () {
-    return view('landingpage');
-});
-
-Route::get('/welcome', function () {
     return view('welcome');
 });
 
