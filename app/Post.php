@@ -36,4 +36,12 @@ class Post extends Model
     protected $fillable = ['UserId', 'PostTypeId', 'Title', 'Message', 'PostDate', 'ViewRestrictionTypeId'];
 
     protected $dates = ['PostDate'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function User()
+    {
+        return $this->belongsTo('App\User', 'UserId', 'UserId');
+    }
 }

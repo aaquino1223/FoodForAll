@@ -9,7 +9,8 @@
                         <img class="card-img"  >
                         <div class="row card-img-overlay mb-4">
                             <div class="media col align-self-end">
-                                <img class="mr-3 align-self-center ml-3" alt="image">
+                                <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 75px; height: 75px"
+                                     alt="image" src="{{isset($user->multimedia) ? '' : asset('assets/user-purple.svg')}}">
                                 <div class="media-body">
                                     <h4 class="card-title">{{$user->UserName}}</h4>
                                 </div>
@@ -80,7 +81,7 @@
                                 @else
                                     <a href="{{url('/profile/' . $user->UserId)}}" class="btn btn-light">Timeline</a>
                                     <a href="{{url('/profile/' . $user->UserId . '/associates')}}" class="btn btn-light">Associates <label class="m-0 ml-2">{{$user->followers()->count()}}</label></a>
-                                    <a href="{{url('/profile/' . $user->UserId . '/followers')}}" class="btn btn-light">Followers</a>
+                                    <a href="{{url('/profile/' . $user->UserId . '/followers')}}" class="btn btn-light">Followers <label class="m-0 ml-2">{{$user->followers()->count()}}</label></a>
                                     <a href="{{url('/profile/' . $user->UserId . '/photos')}}" class="btn btn-light">Photos</a>
                                 @endif
                             </div>
