@@ -54,14 +54,22 @@
                                 </li>
                             @endif
                         @else
+
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/newpost') }}" data-toggle="modal" data-target="#createPost">{{ __('Create Post') }}</a>
-{{--                                <a class="nav-link" href="{{ url('/newpost') }}">{{ __('Create Post') }}</a>--}}
+                                <a class="nav-link" href="#" data-toggle="modal" data-target="#createPost">{{ __('Create Post') }}</a>
+                                {{--                                <a class="nav-link" href="{{ url('/newpost') }}">{{ __('Create Post') }}</a>--}}
                             </li>
-                            <li class="nav-item align-self-center ml-4">
-                                <a id="navbarAlerts" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown align-self-center ml-4">
+                                <a id="navbarRequestsDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <img src="{{ asset('assets/group.svg')}}" style="width: 25px; height: 25px;"><span class="caret"></span>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarRequestsDropdown">
+                                    @foreach(auth()->user()->receivedRequests()->whereNull('Accepted')->orderBy('RequestedDate', 'DESC')->get() as $receivedRequest)
+                                        <a class="dropdown-item" href="{{ url('profile/' . $receivedRequest->RequesterId) }}">
+                                            {{ $receivedRequest->Requester->UserName }} wants to connect!
+                                        </a>
+                                    @endforeach
+                                </div>
                             </li>
                             <li class="nav-item align-self-center ml-3 mr-2">
                                 <a id="navbarAlerts" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

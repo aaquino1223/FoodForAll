@@ -37,8 +37,10 @@ Route::get('/profile', 'ProfileController@index')->middleware('auth');
 Route::get('/profile/{profile}', 'ProfileController@show')->middleware('auth');
 
 Route::get('/profile/{profile}/associates', 'AssociateController@index')->middleware('auth');
-Route::post('/profile/{profile}/associates', 'AssociateController@create')->middleware('auth')
-;
+Route::post('/profile/{profile}/associates', 'AssociateController@create')->middleware('auth');
+Route::put('/profile/{profile}/associates', 'AssociateController@update')->middleware('auth');
+//Route::resource('/profile/{profile}/associates', 'AssociateController');
+
 Route::get('/profile/{profile}/followers', 'FollowerController@index')->middleware('auth');
 Route::post('/profile/{profile}/followers', 'FollowerController@create')->middleware('auth');
 

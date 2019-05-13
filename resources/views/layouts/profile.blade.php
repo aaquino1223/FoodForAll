@@ -21,15 +21,42 @@
                         <div class="col-5" >
                             <div class="btn-group" role="group" aria-label="profile navigation">
                                 @if(auth()->user()->UserId != $user->UserId)
-                                    @if($associateType == null)
+                                    @if($association == null)
                                         <form method="POST" action="{{url('/profile/' . $user->UserId . '/associates')}}">
                                             @csrf
                                             <button type="submit" class="btn btn-primary" name="submit" value="Connect">Connect</button>
                                         </form>
-                                    @elseif($associateType->Accepted)
-                                        <button class="btn btn-primary" name="submit" value="Connected">{{$associateType->Description}} &#10004;</button>
                                     @else
-                                        <button class="btn btn-primary" name="submit" value="Connected">Pending</button>
+                                        <form method="POST" action="{{url('/profile/' . $user->UserId . '/associates')}}">
+                                            @csrf
+                                            @method('PUT')
+                                                @if($association->Accepted)
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toggle" value="Connected" role="button"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                                                v-pre>{{$association->associateType->Description}} &#10004;</button><span class="caret"></span>
+
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="connectedDropdown">
+                                                            <button type="submit" class="dropdown-item" name="submit" value="Unassociate">Unassociate</button>
+                                                        </div>
+                                                    </div>
+                                                @else
+                                                    <div class="dropdown">
+                                                        <button class="btn btn-primary dropdown-toggle" value="Pending" role="button"
+                                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Pending</button><span class="caret"></span>
+
+                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="pendingDropdown">
+                                                                @if($association->RequesterId == auth()->user()->UserId)
+                                                                    <button type="submit" class="dropdown-item" name="submit" value="DeleteRequest">Delete Request</button>
+                                                                @elseif($association->RequesterId == $user->UserId)
+                                                                    <button type="submit" class="dropdown-item" name="submit" value="Accept">Accept</button>
+                                                                    <button type="submit" class="dropdown-item" name="submit" value="Decline">Decline</button>
+                                                                @endif
+
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                        </form>
                                     @endif
                                     @if($follower == null)
                                         <form method="POST" action="{{url('/profile/' . $user->UserId . '/followers')}}">

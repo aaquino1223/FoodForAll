@@ -18,9 +18,12 @@ class FollowerController extends Controller
     public function index(int $id)
     {
         $user = User::find($id);
-        $associateType = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        $association = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        if ($association == null) {
+            $association = Associate::where('RequesterId', $user->UserId)->where('RecipientId', auth()->user()->UserId)->first();
+        }
         $follower = Follower::where('UserId', $user->UserId)->where('FollowerId', auth()->user()->UserId)->first();
-        return view('profile.followers', compact('user', 'associateType', 'follower'));
+        return view('profile.followers', compact('user', 'association', 'follower'));
     }
 
     /**

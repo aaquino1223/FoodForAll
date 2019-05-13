@@ -52,9 +52,12 @@ class ProfileController extends Controller
     {
         $user = User::find($id);
         $posts = $user->posts()->orderBy('PostDate', 'DESC')->get();
-        $associateType = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        $association = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        if ($association == null) {
+            $association = Associate::where('RequesterId', $user->UserId)->where('RecipientId', auth()->user()->UserId)->first();
+        }
         $follower = Follower::where('UserId', $user->UserId)->where('FollowerId', auth()->user()->UserId)->first();
-        return view('profile.index', compact('user', 'posts', 'associateType', 'follower'));
+        return view('profile.index', compact('user', 'posts', 'association', 'follower'));
     }
 
     /**

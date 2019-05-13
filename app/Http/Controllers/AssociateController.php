@@ -19,9 +19,12 @@ class AssociateController extends Controller
     public function index(int $id)
     {
         $user = User::find($id);
-        $associateType = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        $association = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        if ($association == null) {
+            $association = Associate::where('RequesterId', $user->UserId)->where('RecipientId', auth()->user()->UserId)->first();
+        }
         $follower = Follower::where('UserId', $user->UserId)->where('FollowerId', auth()->user()->UserId)->first();
-        return view('profile.associates', compact('user', 'associateType', 'follower'));
+        return view('profile.associates', compact('user', 'association', 'follower'));
     }
 
     /**
@@ -64,7 +67,7 @@ class AssociateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -96,9 +99,24 @@ class AssociateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $user = User::find($request->route('profile'));
+        $association = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        if ($association == null) {
+            $association = Associate::where('RequesterId', $user->UserId)->where('RecipientId', auth()->user()->UserId)->first();
+        }
+
+        if ($request->submit == 'Accept') {
+            $association->Accepted = true;
+            $association->AcceptedDate = date("Y-m-d H:i:s");
+            $association->save();
+        }
+        else if ($request->submit == 'Decline' || $request->submit == 'DeleteRequest' || $request->submit == 'Unassociate') {
+            $association->delete();
+        }
+
+        return redirect()->back();
     }
 
     /**
