@@ -9,6 +9,7 @@ use App\User;
 use App\Multimedia;
 use App\UserMultimedia;
 use \Illuminate\Contracts\Validation\Validator;
+use PhpParser\Node\Expr\AssignOp\Mul;
 
 class ProfileController extends Controller
 {
@@ -64,7 +65,7 @@ class ProfileController extends Controller
         else {
             $multimedia = auth()->user()->Multimedia;
             $multimedia->Media = $content;
-            $multimedia->MimeType = $request->profileImage->type;
+            $multimedia->MimeType = mime_content_type($request->profileImage->getPathName());
             $multimedia->save();
         }
 

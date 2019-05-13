@@ -24,7 +24,7 @@ class Multimedia extends Model
     /**
      * @var array
      */
-    protected $fillable = ['Media', 'MultiMediaTypeId'];
+    protected $fillable = ['Media', 'MimeType', 'MultiMediaTypeId'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\hasOne
