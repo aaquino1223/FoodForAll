@@ -22,4 +22,19 @@ class UserMultimedia extends Model
      */
     protected $fillable = ['UserId', 'MultimediaId'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function User()
+    {
+        return $this->belongsTo('App\User', 'UserId', 'UserId');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function Multimedia()
+    {
+        return $this->hasOne('App\Multimedia', 'MultiMediaId', 'MultiMediaId');
+    }
 }

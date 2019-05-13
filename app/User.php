@@ -136,4 +136,20 @@ class User extends Model implements  AuthenticatableContract
 
         return $posts;
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function userMultimedia()
+    {
+        return $this->hasOne('App\UserMultimedia', 'UserId', 'UserId');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOneThrough
+     */
+    public function multimedia()
+    {
+        return $this->hasOneThrough('App\Multimedia', 'App\UserMultimedia','UserId','MultiMediaId','UserId','MultiMediaId');
+    }
 }

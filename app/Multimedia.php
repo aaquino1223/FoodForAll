@@ -23,4 +23,12 @@ class Multimedia extends Model
      */
     protected $fillable = ['Media', 'MultiMediaTypeId'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function multimediaType()
+    {
+        return $this->hasOne('App\MultimediaType', 'MultiMediaTypeId', 'MultiMediaTypeId');
+    }
+
 }

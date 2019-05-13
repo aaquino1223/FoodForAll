@@ -13,9 +13,11 @@
     <div class="card-header">
         <div class="row">
             <div class="media">
-                <img class="mr-3 align-self-center ml-3" alt="image">
+                <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 50px; height: 50px"
+                    alt="image" src="{{isset($user->multimedia) ? '' : asset('assets/user-purple.svg')}}">
                 <div class="media-body">
-                    <p class="card-text">{{$post->PostDate->toDayDateTimeString()}}</p>
+                    <p class="card-text m-0">{{$post->User->UserName}}</p>
+                    <p class="card-text m-0">{{$post->PostDate->toDayDateTimeString()}}</p>
                     @isset($location)
                         <h6 class="card-subtitle">{{$location}}</h6>
                     @endisset
