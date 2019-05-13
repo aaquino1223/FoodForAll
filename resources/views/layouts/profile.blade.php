@@ -9,10 +9,39 @@
                         <img class="card-img"  >
                         <div class="row card-img-overlay mb-4">
                             <div class="media col align-self-end">
-                                <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 75px; height: 75px"
-                                     alt="image" src="{{isset($user->multimedia) ? '' : asset('assets/user-purple.svg')}}">
+                                @if(auth()->user()->UserId == $user->UserId)
+                                    <a href="#" data-toggle="modal" data-target="#uploadProfilePic">
+                                @endif
+                                    <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 75px; height: 75px"
+                                         alt="image" src="{{isset($user->multimedia) ? '' : asset('assets/user-purple.svg')}}">
+                                @if(auth()->user()->UserId == $user->UserId)
+                                    </a>
+                                @endif
                                 <div class="media-body">
-                                    <h4 class="card-title">{{$user->UserName}}</h4>
+                                    <h4 class="card-title m-0">{{$user->UserName}}</h4>
+                                </div>
+
+                                <div class="modal fade" id="uploadProfilePic" tabindex="-1" role="dialog" aria-labelledby="uploadProfilePic" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="card">
+                                                <div class="card-header">{{ __('Editing Profile Picture') }}</div>
+                                                <div-- class="card-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="profilePicControlFile">Upload Profile Picture</label>
+                                                            <input type="file" class="form-control-file" id="profilePicControlFile">
+                                                        </div>
+                                                        <div class="row col-4 float-right">
+                                                            <button type="button" class="btn btn-link">Cancel</button>
+                                                            <button type="submit" class="btn btn-primary">
+                                                            {{ __('Upload') }}
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

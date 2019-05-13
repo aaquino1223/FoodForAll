@@ -12,16 +12,6 @@
                                 <label for="exampleFormControlFile1">Upload Profile Picture</label>
                                 <input type="file" class="form-control-file" id="exampleFormControlFile1">
                             </div>
-                        <!--div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload Image</span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                            </div>
-                            <!--must add javascript to preview image-->
-                        <!--/div-->
                             <div class="row col-4 float-right">
                                 <button type="button" class="btn btn-link">Skip</button>
                                 <button type="submit" class="btn btn-primary">
