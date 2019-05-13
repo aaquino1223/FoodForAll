@@ -17,6 +17,8 @@ class ViewRestrictionType extends Model
      */
     protected $table = 'viewrestrictiontype';
 
+    public $timestamps = false;
+
     /**
      * The primary key for the model.
      * 
