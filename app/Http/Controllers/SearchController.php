@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
 
 class SearchController extends Controller
 {
@@ -16,22 +18,38 @@ class SearchController extends Controller
     public function index(Request  $request)
     {
         $searchTerm = $request->query('searchTerm');
-        $posts = [];
+        $searchType = $request->query('searchType');
+
+        $people = [];
 
         if (isset($searchTerm)) {
-            //Get all posts that match that string
-            $rawPosts = Post::where(function($query) use ($searchTerm) {
-                return $query->where('Title', 'LIKE', '%' . $searchTerm . '%')
-                    ->orWhere('Message', 'LIKE', '%' . $searchTerm . '%');
-            })->orderBy('PostDate', 'DESC')->get();
+            $people = User::where('UserName', 'LIKE',  '%' . $searchTerm . '%')->get();
+        }
 
-            foreach ($rawPosts as $rawPost) {
-                if (auth()->user()->canViewPost($rawPost)) {
-                    $posts[] = $rawPost;
+        if ($searchType == 'people') {
+
+            return view('search.people', compact("people", "searchTerm"));
+        }
+        else {
+            $posts = [];
+            $people = $people->map(function ($person) { return $person->UserId; });
+            if (isset($searchTerm)) {
+                //Get all posts that match that string
+                $rawPosts = Post::where(function ($query) use ($searchTerm, $people) {
+                    return $query->where('Title', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhere('Message', 'LIKE', '%' . $searchTerm . '%')
+                        ->orWhereIn('UserId', $people);
+                })->orderBy('PostDate', 'DESC')->get();
+
+                foreach ($rawPosts as $rawPost) {
+                    if (auth()->user()->canViewPost($rawPost)) {
+                        $posts[] = $rawPost;
+                    }
                 }
             }
+
+            return view('search.index', compact("posts", "searchTerm"));
         }
-        return view('search.index', compact("posts","searchTerm"));
     }
 
     /**
