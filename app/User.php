@@ -96,14 +96,40 @@ class User extends Model implements  AuthenticatableContract
         return $this->hasMany('App\Post', 'UserId', 'UserId');
     }
 
+    /**
+     *
+     * Get the posts that $user is allowed to see
+     * @param  User  $user
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function allowedPosts(User $user)
+    {
+        $viewRestrictionTypeIds = [5]; //Everyone
+        if ($this->associates()->contains($user)) {
+            $viewRestrictionTypeIds[] = 1; //Associates
+            $viewRestrictionTypeIds[] = 2; //Associates and Associates of Associates
+            $viewRestrictionTypeIds[] = 4; //Associates and followers
+        }
+
+        if ($this->followers()->get()->map(function ($follow) { return $follow->Follower; })->contains($user)) {
+            $viewRestrictionTypeIds[] = 3; //Followers only
+            $viewRestrictionTypeIds[] = 4; //Associates and followers
+        }
+
+        $allowedPosts = $this->posts()->whereIn('ViewRestrictionTypeId', $viewRestrictionTypeIds)->get();
+        return $allowedPosts;
+    }
+
     public function feed()
     {
-        $users = $this->associates();
+        //Get all users associated with and following
+        $users = $this->associates()->union($this->follows()->get()->map(function ($follow) { return $follow->User; }));
         $posts = $this->posts()->get();
+
 
         foreach ($users as $user)
         {
-            $posts = $posts->merge($user->posts()->get());
+            $posts = $posts->merge($user->allowedPosts($this));
         }
 
         $posts = $posts->sortByDesc('PostDate', SORT_REGULAR);

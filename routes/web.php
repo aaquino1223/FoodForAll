@@ -39,8 +39,12 @@ Route::post('/isorg', function ($request) {
 
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
 Route::get('/profile/{profile}', 'ProfileController@show')->middleware('auth');
+
 Route::get('/profile/{profile}/associates', 'AssociateController@index')->middleware('auth');
+Route::post('/profile/{profile}/associates', 'AssociateController@create')->middleware('auth')
+;
 Route::get('/profile/{profile}/followers', 'FollowerController@index')->middleware('auth');
+Route::post('/profile/{profile}/followers', 'FollowerController@create')->middleware('auth');
 
 Auth::routes();
 

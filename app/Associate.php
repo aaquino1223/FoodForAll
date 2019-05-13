@@ -21,6 +21,8 @@ class Associate extends Model
      */
     protected $table = 'associate';
 
+    public $timestamps = false;
+
 
     /**
      * @var array
@@ -42,5 +44,13 @@ class Associate extends Model
     public function recipient()
     {
         return $this->belongsTo('App\User', 'RecipientId', 'UserId');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function associateType()
+    {
+        return $this->hasOne('App\AssociateType', 'AssociateTypeId', 'AssociateTypeId');
     }
 }
