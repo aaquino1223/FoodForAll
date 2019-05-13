@@ -61516,6 +61516,39 @@ module.exports = "/images/adding.svg?c6f27a7e8da267e8f7c3b4a08e78c300";
 
 /***/ }),
 
+/***/ "./resources/assets/camera.svg":
+/*!*************************************!*\
+  !*** ./resources/assets/camera.svg ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/camera.svg?03e7843f36d1e4f2528840115a67b0ae";
+
+/***/ }),
+
+/***/ "./resources/assets/pin.svg":
+/*!**********************************!*\
+  !*** ./resources/assets/pin.svg ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/pin.svg?4b0ff2f316d7dd9a40e222619ddddcd9";
+
+/***/ }),
+
+/***/ "./resources/assets/video-camera.svg":
+/*!*******************************************!*\
+  !*** ./resources/assets/video-camera.svg ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/video-camera.svg?15ee8c2feb83cb9a393765c3f92772a3";
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -61614,6 +61647,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -61622,9 +61659,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -61645,6 +61682,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateDonationPost).call(this, props));
     _this.state = {
+      postType: 1,
       addingDonations: true,
       donations: [{
         foodItem: '',
@@ -61652,10 +61690,58 @@ function (_Component) {
         foodMeasure: ''
       }]
     };
+    _this.addDonationItem = _this.addDonationItem.bind(_assertThisInitialized(_this));
+    _this.goToPost = _this.goToPost.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CreateDonationPost, [{
+    key: "handleFoodItemChange",
+    value: function handleFoodItemChange(index, event) {
+      var newDonations = this.state.donations.map(function (donation, dIndex) {
+        if (index !== dIndex) return donation;
+        return _objectSpread({}, donation, {
+          foodItem: event.target.value
+        });
+      });
+      this.setState({
+        donations: newDonations
+      });
+    }
+  }, {
+    key: "handleFoodAmountChange",
+    value: function handleFoodAmountChange(index, event) {
+      var newDonations = this.state.donations.map(function (donation, dIndex) {
+        if (index !== dIndex) return donation;
+        return _objectSpread({}, donation, {
+          foodAmount: event.target.value
+        });
+      });
+      this.setState({
+        donations: newDonations
+      });
+    }
+  }, {
+    key: "handleFoodMeasureChange",
+    value: function handleFoodMeasureChange(index, event) {
+      var newDonations = this.state.donations.map(function (donation, dIndex) {
+        if (index !== dIndex) return donation;
+        return _objectSpread({}, donation, {
+          foodMeasure: event.target.value
+        });
+      });
+      this.setState({
+        donations: newDonations
+      });
+    }
+  }, {
+    key: "changePostType",
+    value: function changePostType(postType) {
+      this.setState({
+        postType: postType
+      });
+    }
+  }, {
     key: "goToPost",
     value: function goToPost() {
       this.setState({
@@ -61663,95 +61749,283 @@ function (_Component) {
       });
     }
   }, {
+    key: "removeDonationItem",
+    value: function removeDonationItem(index) {
+      this.setState({
+        donations: this.state.donations.filter(function (donation, dIndex) {
+          return index !== dIndex;
+        })
+      });
+    }
+  }, {
     key: "addDonationItem",
     value: function addDonationItem() {
-      var current = this.state.donations;
-      current.push({
-        foodItem: '',
-        foodAmount: '',
-        foodMeasure: ''
-      });
       this.setState({
-        donations: current
+        donations: this.state.donations.concat([{
+          foodItem: '',
+          foodAmount: '',
+          foodMeasure: ''
+        }])
       });
+    }
+  }, {
+    key: "ShowForm",
+    value: function ShowForm() {
+      var _this2 = this;
+
+      if (this.state.addingDonations && this.state.postType === 1) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.donations.map(function (item, index) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: index,
+            className: "card bg-light mb-3",
+            style: {
+              maxWidth: '36rem'
+            }
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "card-header"
+          }, "Food Item #", index + 1, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            type: "button",
+            className: "close",
+            "aria-label": "Close",
+            onClick: function onClick(event) {
+              return _this2.removeDonationItem(index);
+            }
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            "aria-hidden": "true"
+          }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "card-body"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "form-group"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            className: "form-control",
+            id: "foodItem",
+            "aria-describedby": "which food",
+            placeholder: "Which food item are you donating?",
+            value: item.foodItem,
+            required: true,
+            onChange: function onChange(event) {
+              return _this2.handleFoodItemChange(index, event);
+            }
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "form-group"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "number",
+            min: "1",
+            className: "form-control",
+            id: "numItem",
+            "aria-describedby": "how many",
+            placeholder: "How many?",
+            value: item.foodAmount,
+            onChange: function onChange(event) {
+              return _this2.handleFoodAmountChange(index, event);
+            }
+          })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "form-group"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "text",
+            className: "form-control",
+            id: "measureItem",
+            "aria-describedby": "what measure",
+            placeholder: "In what measure? e.g. servings, oz, lbs",
+            value: item.foodMeasure,
+            onChange: function onChange(event) {
+              return _this2.handleFoodMeasureChange(index, event);
+            }
+          }))));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-8"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-default",
+          "aria-label": "Add",
+          onClick: this.addDonationItem,
+          style: {
+            width: '50px',
+            height: '50px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: __webpack_require__(/*! ../../assets/adding.svg */ "./resources/assets/adding.svg"),
+          className: "img-fluid",
+          alt: "Add"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-4 align-self-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-link",
+          "data-dismiss": "modal"
+        }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-primary",
+          onClick: this.goToPost
+        }, "Next"))));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row justify-content-end"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-7 align-self-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "dropdownMenuButton"
+        }, "Who can see?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dropdown mb-2 col-4 align-self-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "btn btn-secondary btn-sm dropdown-toggle",
+          type: "button",
+          id: "dropdownMenuButton",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }, "Anyone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dropdown-menu",
+          "aria-labelledby": "dropdownMenuButton"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "dropdown-item",
+          href: "#"
+        }, "Anyone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "dropdown-item",
+          href: "#"
+        }, "Associate Only"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "dropdown-item",
+          href: "#"
+        }, "Associates & Followers")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          className: "form-control",
+          id: "exampleTitle",
+          maxLength: "50",
+          "aria-describedby": "titleHelp",
+          placeholder: "Title/Subject"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          className: "form-control",
+          id: "exampleFormControlTextarea1",
+          maxLength: "500",
+          rows: "3",
+          placeholder: "Anything else to add?"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-8"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-default",
+          "aria-label": "Picture",
+          style: {
+            width: '50px',
+            height: '50px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: __webpack_require__(/*! ../../assets/camera.svg */ "./resources/assets/camera.svg"),
+          className: "img-fluid",
+          alt: "Picture"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-default",
+          "aria-label": "Video",
+          style: {
+            width: '50px',
+            height: '50px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: __webpack_require__(/*! ../../assets/video-camera.svg */ "./resources/assets/video-camera.svg"),
+          className: "img-fluid",
+          alt: "Video"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-default",
+          "aria-label": "Location",
+          style: {
+            width: '50px',
+            height: '50px'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: __webpack_require__(/*! ../../assets/pin.svg */ "./resources/assets/pin.svg"),
+          className: "img-fluid",
+          alt: "Location"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-4 align-self-center"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-link"
+        }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit",
+          className: "btn btn-primary"
+        }, "Post"))));
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.donations.map(function (item) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card bg-light mb-3",
-          style: {
-            maxWidth: '36rem'
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-header"
-        }, "Food Item #", {
-          index: index
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          type: "button",
-          className: "close",
-          "aria-label": "Close"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          "aria-hidden": "true"
-        }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "card-body"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          className: "form-control",
-          id: "foodItem",
-          "aria-describedby": "which food",
-          placeholder: "Which food item are you donating?",
-          value: item.foodItem
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "number",
-          min: "1",
-          className: "form-control",
-          id: "numItem",
-          "aria-describedby": "how many",
-          placeholder: "How many?",
-          value: item.foodAmount
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-group"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          type: "text",
-          className: "form-control",
-          id: "measureItem",
-          "aria-describedby": "what measure",
-          placeholder: "In what measure? e.g. servings, oz, lbs",
-          value: item.foodMeasure
-        }))));
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
+      var _this3 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-8"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "btn btn-default",
-        "aria-label": "Add",
-        onClick: this.addDonationItem,
-        style: {
-          width: '50px',
-          height: '50px'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: __webpack_require__(/*! ../../assets/adding.svg */ "./resources/assets/adding.svg"),
-        className: "img-fluid",
-        alt: "Add"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-4 align-self-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "btn btn-link"
-      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "btn btn-primary",
-        onClick: this.goToPost
-      }, "Next"))));
+        className: "card-header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "nav nav-pills mb-3 nav-justified",
+        id: "pills-tab",
+        role: "tablist"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick(event) {
+          return _this3.changePostType(1);
+        },
+        className: "nav-link active",
+        id: "pills-donation-tab",
+        "data-toggle": "pill",
+        href: "#pills-donation",
+        role: "tab",
+        "aria-controls": "pills-donation",
+        "aria-selected": "true"
+      }, "Donation")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick(event) {
+          return _this3.changePostType(2);
+        },
+        className: "nav-link",
+        id: "pills-event-tab",
+        "data-toggle": "pill",
+        href: "#pills-event",
+        role: "tab",
+        "aria-controls": "pills-event",
+        "aria-selected": "false"
+      }, "Event")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick(event) {
+          return _this3.changePostType(3);
+        },
+        className: "nav-link",
+        id: "pills-help-tab",
+        "data-toggle": "pill",
+        href: "#pills-help",
+        role: "tab",
+        "aria-controls": "pills-help",
+        "aria-selected": "false"
+      }, "Help")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick(event) {
+          return _this3.changePostType(4);
+        },
+        className: "nav-link",
+        id: "pills-other-tab",
+        "data-toggle": "pill",
+        href: "#pills-other",
+        role: "tab",
+        "aria-controls": "pills-other",
+        "aria-selected": "false"
+      }, "Other"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tab-content",
+        id: "pills-tabContent"
+      }, this.ShowForm())))));
     }
   }]);
 
@@ -61784,8 +62058,8 @@ if (document.getElementById('donationForm')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/FoodForAll/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/FoodForAll/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\wamp64\www\FoodForAll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\wamp64\www\FoodForAll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

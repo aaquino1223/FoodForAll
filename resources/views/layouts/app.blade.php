@@ -104,12 +104,13 @@
             </div>
         </nav>
 
-        <main class="py-5">
+        <main class="mt-lg-5 pt-5">
             <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="createPost" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        @component('component.createpost')
-                        @endcomponent
+                        <div id="donationForm">
+
+                        </div>
                     </div>
                 </div>
             </div>
