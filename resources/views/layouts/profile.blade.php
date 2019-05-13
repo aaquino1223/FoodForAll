@@ -13,40 +13,43 @@
                                     <a href="#" data-toggle="modal" data-target="#uploadProfilePic">
                                 @endif
                                     <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 75px; height: 75px"
-                                         alt="image" src="{{isset($user->multimedia) ? '' : asset('assets/user-purple.svg')}}">
+                                         alt="image" src="{{isset($user->multimedia) ?
+                                         'data:' . $user->multimedia->MimeType . ';base64,' . base64_encode($user->multimedia->Media) :
+                                         asset('assets/user-purple.svg')}}">
                                 @if(auth()->user()->UserId == $user->UserId)
                                     </a>
                                 @endif
                                 <div class="media-body">
                                     <h4 class="card-title m-0">{{$user->UserName}}</h4>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                <div class="modal fade" id="uploadProfilePic" tabindex="-1" role="dialog" aria-labelledby="uploadProfilePic" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="card">
-                                                <div class="card-header">{{ __('Editing Profile Picture') }}</div>
-                                                <div-- class="card-body">
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <label for="profilePicControlFile">Upload Profile Picture</label>
-                                                            <input type="file" class="form-control-file" id="profilePicControlFile">
-                                                        </div>
-                                                        <div class="row col-4 float-right">
-                                                            <button type="button" class="btn btn-link">Cancel</button>
-                                                            <button type="submit" class="btn btn-primary">
-                                                            {{ __('Upload') }}
-                                                            </button>
-                                                        </div>
-                                                    </form>
+                    <div class="modal fade" id="uploadProfilePic" tabindex="-1" role="dialog" aria-labelledby="uploadProfilePic" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="card">
+                                    <div class="card-header"><h5 class="card-title m-0">Editing Profile Picture</h5></div>
+                                    <div class="card-body">
+                                        <form action="{{ url('profile') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="form-group">
+                                                <label for="profilePicControlFile">Upload Profile Picture</label>
+                                                <input type="file" name="profileImage" class="form-control-file" accept="image/*" id="profilePicControlFile">
                                             </div>
-                                        </div>
+                                            <div class="row col-5 float-right">
+                                                <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    {{ __('Upload') }}
+                                                </button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div class="row justify-content-sm-end">
                         <div class="col-5" >
                             <div class="btn-group" role="group" aria-label="profile navigation">

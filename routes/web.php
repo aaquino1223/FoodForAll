@@ -25,6 +25,7 @@ Route::get('/onboarding/profile', function () {
 
 Route::get('/profile', 'ProfileController@index')->middleware('auth');
 Route::get('/profile/{profile}', 'ProfileController@show')->middleware('auth');
+Route::post('/profile', 'ProfileController@store')->middleware('auth');
 
 Route::get('/profile/{profile}/associates', 'AssociateController@index')->middleware('auth');
 Route::post('/profile/{profile}/associates', 'AssociateController@create')->middleware('auth');

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @property int $MultiMediaId
  * @property string $Media
+ * @property string $MimeType
  * @property int $MultiMediaTypeId
  */
 class Multimedia extends Model
@@ -17,6 +18,8 @@ class Multimedia extends Model
      * @var string
      */
     protected $primaryKey = 'MultiMediaId';
+
+    public $timestamps = false;
 
     /**
      * @var array

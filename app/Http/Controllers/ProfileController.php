@@ -6,6 +6,9 @@ use App\Follower;
 use App\Associate;
 use Illuminate\Http\Request;
 use App\User;
+use App\Multimedia;
+use App\UserMultimedia;
+use \Illuminate\Contracts\Validation\Validator;
 
 class ProfileController extends Controller
 {
@@ -40,6 +43,33 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'profileImage' => 'required|image',
+        ]);
+
+        $content = file_get_contents($request->profileImage);
+        $multimedia = null;
+        if (auth()->user()->UserMultimedia == null) {
+            $multimedia = new Multimedia();
+            $multimedia->MultiMediaTypeId = 1;
+            $multimedia->Media = $content;
+            $multimedia->MimeType = mime_content_type($request->profileImage->getPathName());
+            $multimedia->save();
+
+            $userMultimedia = new UserMultimedia();
+            $userMultimedia->UserId = auth()->user()->UserId;
+            $userMultimedia->MultimediaId = $multimedia->MultiMediaId;
+            $userMultimedia->save();
+        }
+        else {
+            $multimedia = auth()->user()->Multimedia;
+            $multimedia->Media = $content;
+            $multimedia->MimeType = $request->profileImage->type;
+            $multimedia->save();
+        }
+
+
+        return redirect()->back();
     }
 
     /**
