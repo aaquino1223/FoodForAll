@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">Self</h5>
                 <p class="card-text"> You are a person who struggles with food security or someone who wants to do something about hunger and food waste.</p>
-                <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="business_select" value="Submit">Select</button>
+                <a class="btn btn-lg btn-block btn-outline-primary" href="{{url('register?type=self')}}" >Select</a>
             </div>
         </div>
         <div class="card">
@@ -18,7 +18,7 @@
             <div class="card-body">
                 <h5 class="card-title">Business</h5>
                 <p class="card-text">You are large as a Fortune-500 corporation and or as small as a local shop. Either way, you can and want to help!</p>
-                <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="business_select" value="Submit">Select</button>
+                <a class="btn btn-lg btn-block btn-outline-primary" href="{{url('register?type=business')}}" >Select</a>
             </div>
         </div>
         <div class="card">
@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h5 class="card-title">Nonprofit</h5>
                 <p class="card-text">You have already been in the frontlines battling this issue and you know that platform will expand your reach.</p>
-                <button type="submit" class="btn btn-lg btn-block btn-outline-primary" form="business_select" value="Submit">Select</button>
+                <a class="btn btn-lg btn-block btn-outline-primary" href="{{url('register?type=nonprofit')}}" >Select</a>
             </div>
         </div>
     </div>

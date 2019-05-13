@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -41,6 +43,28 @@ class RegisterController extends Controller
     }
 
     /**
+     * Show the application registration form.
+     *
+     * @param  \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm(Request $request)
+    {
+        $type = $request->query('type' );
+        if ($type == 'self') {
+            $IsOrganization = false;
+            return view('auth.register', compact('IsOrganization'));
+        }
+        else if ($type == 'business' || $type == 'nonprofit' ) {
+            $IsOrganization = true;
+            return view('auth.register', compact('IsOrganization'));
+        }
+        else {
+            return view('isOrg');
+        }
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -48,11 +72,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        $dateofbirthRules = [];
+
+        if (!$data['IsOrganization']) {
+            $dateofbirthRules = ['required', 'date'];
+        }
+
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'dateofbirth' => $dateofbirthRules
+        ];
+
+        return Validator::make($data, $rules);
     }
 
     /**
@@ -68,7 +101,9 @@ class RegisterController extends Controller
             'Email' => $data['email'],
             'Password' => Hash::make($data['password']),
             'InsertedDate' => date('Y-m-d H:i:s'),
-            'LastUpdatedDate' => date('Y-m-d H:i:s')
+            'LastUpdatedDate' => date('Y-m-d H:i:s'),
+            'IsOrganization' => $data['IsOrganization'],
+            'DateOfBirth' => array_key_exists('dateofbirth', $data) ? $data['dateofbirth'] : NULL
         ]);
     }
 }
