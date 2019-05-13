@@ -8,8 +8,6 @@
             <div class="card-header">{{ __('Complete Your Profile') }}</div>
             <div class="card-body">
                 <!--add form-->
-
-
                 <div>
                     @component('component.maps')
                     @endcomponent

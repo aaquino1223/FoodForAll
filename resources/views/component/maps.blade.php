@@ -168,7 +168,7 @@
     }
 
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initAutocomplete"
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1wRM9lrJS6oZLPfgvOf25g7tSvN_RF-g&libraries=places&callback=initAutocomplete"
         async defer></script>
 </body>
 </html>
