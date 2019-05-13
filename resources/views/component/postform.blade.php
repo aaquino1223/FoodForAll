@@ -14,10 +14,10 @@
     </div>
 </div>
 <div class="form-group">
-    <input type="text" class="form-control" id="exampleTitle" aria-describedby="titleHelp" placeholder="Title/Subject">
+    <input type="text" class="form-control" id="exampleTitle" maxlength="50" aria-describedby="titleHelp" placeholder="Title/Subject">
 </div>
 <div class="form-group">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"placeholder="Anything else to add?"></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" maxlength="500" rows="3"placeholder="Anything else to add?"></textarea>
 </div>
 <div class="row">
     <div class="col-8">
