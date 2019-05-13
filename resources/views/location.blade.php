@@ -9,12 +9,16 @@
             <div class="card-body">
                 <!--add form-->
 
-                <div class="form-group row">
-                    <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
 
+                <div>
+                    @component('component.maps')
+                    @endcomponent
+                </div>
+                <!--div class="form-group row">
+                    <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
                     <div class="col-md-6">
                         <input id="address" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('address') }}" required autocomplete="address" autofocus>
-                    </div>
+                    </div-->
                     <div class="row col-4 float-right">
                         <button type="button" class="btn btn-link">Skip</button>
                         <button type="submit" class="btn btn-primary">
