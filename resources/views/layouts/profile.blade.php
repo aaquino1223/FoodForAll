@@ -21,12 +21,25 @@
                         <div class="col-5" >
                             <div class="btn-group" role="group" aria-label="profile navigation">
                                 @if(auth()->user()->UserId != $user->UserId)
-                                    <form method="POST" action="{{url('/profile')}}">
-                                        @csrf
-                                        
-                                        <button class="btn btn-primary" name="Connect">Connect</button>
-                                        <button class="btn btn-light" name="Follow">Follow</button>
-                                    </form>
+                                    @if($associateType == null)
+                                        <form method="POST" action="{{url('/profile/' . $user->UserId . '/associates')}}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary" name="submit" value="Connect">Connect</button>
+                                        </form>
+                                    @elseif($associateType->Accepted)
+                                        <button class="btn btn-primary" name="submit" value="Connected">{{$associateType->Description}} &#10004;</button>
+                                    @else
+                                        <button class="btn btn-primary" name="submit" value="Connected">Pending</button>
+                                    @endif
+                                    @if($follower == null)
+                                        <form method="POST" action="{{url('/profile/' . $user->UserId . '/followers')}}">
+                                            @csrf
+
+                                            <button class="btn btn-light" name="submit" value="Follow">Follow</button>
+                                        </form>
+                                    @else
+                                        <button class="btn btn-light" name="submit" value="Connected">Following &#10004;</button>
+                                    @endif
                                 @endif
                             </div>
                         </div>

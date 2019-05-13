@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Associate;
+use App\Follower;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -16,17 +18,26 @@ class FollowerController extends Controller
     public function index(int $id)
     {
         $user = User::find($id);
-        return view('profile.followers', compact('user'));
+        $associateType = Associate::where('RecipientId', $user->UserId)->where('RequesterId', auth()->user()->UserId)->first();
+        $follower = Follower::where('UserId', $user->UserId)->where('FollowerId', auth()->user()->UserId)->first();
+        return view('profile.followers', compact('user', 'associateType', 'follower'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(int $id)
     {
-        //
+        $recipient = User::find($id);
+        $requester = auth()->user();
+        $follower = new Follower;
+        $follower->UserId = $recipient->UserId;
+        $follower->FollowerId = $requester->UserId;
+        $follower->FollowDate = date("Y-m-d H:i:s");
+        $follower->save();
     }
 
     /**

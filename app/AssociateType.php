@@ -17,6 +17,8 @@ class AssociateType extends Model
      */
     protected $table = 'associatetype';
 
+    public $timestamps = false;
+
     /**
      * The primary key for the model.
      * 
