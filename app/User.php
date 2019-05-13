@@ -97,11 +97,11 @@ class User extends Model implements  AuthenticatableContract
     }
 
     /**
-     *
-     * Get the posts that $user is allowed to see
-     * @param  User  $user
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
+ *
+ * Get the posts that $user is allowed to see
+ * @param  User  $user
+ * @return \Illuminate\Database\Eloquent\Collection
+ */
     public function allowedPosts(User $user)
     {
         $viewRestrictionTypeIds = [5]; //Everyone
@@ -118,6 +118,48 @@ class User extends Model implements  AuthenticatableContract
 
         $allowedPosts = $this->posts()->whereIn('ViewRestrictionTypeId', $viewRestrictionTypeIds)->get();
         return $allowedPosts;
+    }
+
+    /**
+     *
+     * Check if can view post
+     * @param  Post  $post
+     * @return bool
+     */
+    public function canViewPost(Post $post)
+    {
+        $viewRestrictionTypeId = $post->ViewRestrictionTypeId;
+        $posterAssociates = $post->User->associates();
+        $isAssociated = $posterAssociates->contains($this);
+        $isAssociateOfAssociates = false;
+        $isFollowing = $post->User->followers()->get()->map(function ($follow) { return $follow->Follower; })->contains($this);
+
+        if ($isAssociated) {
+            foreach ($posterAssociates as $associate) {
+                $isAssociateOfAssociates = $associate->associates()->contains($this);
+                if ($isAssociated) {
+                    break;
+                }
+            }
+        }
+        switch ($viewRestrictionTypeId) {
+            case 1:
+                return $isAssociated;
+                break;
+            case 2:
+                return $isAssociated || $isAssociateOfAssociates;
+                break;
+            case 3:
+                return $isFollowing;
+                break;
+            case 4:
+                return $isAssociated || $isFollowing;
+                break;
+            case 5:
+                return true;
+                break;
+        }
+        return false;
     }
 
     public function feed()

@@ -38,3 +38,6 @@ Route::post('/profile/{profile}/followers', 'FollowerController@create')->middle
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/search', 'SearchController@index')->middleware('auth');
+Route::post('/search', 'SearchController@show')->middleware('auth');

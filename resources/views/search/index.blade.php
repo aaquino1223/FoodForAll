@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.search')
 
-@section('content')
-<div class="container">
+@section('searchContent')
     <div class="row justify-content-center">
         <div class="col-md-12">
             @foreach ($posts as $post)
@@ -10,5 +9,4 @@
             @endforeach
         </div>
     </div>
-</div>
 @endsection
