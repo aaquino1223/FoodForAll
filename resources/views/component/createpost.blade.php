@@ -22,6 +22,8 @@
                             <div id="donationForm">
                             </div>
                         </form>
+                        @component('component.donationform')
+                        @endcomponent
                             <!--div class="card bg-light mb-3" style="max-width: 36rem">
                                 <div class="card-header">Food Item #1
                                     <button type="button" class="close" aria-label="Close">
