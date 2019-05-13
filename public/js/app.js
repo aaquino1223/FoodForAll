@@ -61638,56 +61638,94 @@ var CreateDonationPost =
 function (_Component) {
   _inherits(CreateDonationPost, _Component);
 
-  function CreateDonationPost() {
+  function CreateDonationPost(props) {
+    var _this;
+
     _classCallCheck(this, CreateDonationPost);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CreateDonationPost).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CreateDonationPost).call(this, props));
+    _this.state = {
+      addingDonations: true,
+      donations: [{
+        foodItem: '',
+        foodAmount: '',
+        foodMeasure: ''
+      }]
+    };
+    return _this;
   }
 
   _createClass(CreateDonationPost, [{
+    key: "goToPost",
+    value: function goToPost() {
+      this.setState({
+        addingDonations: false
+      });
+    }
+  }, {
+    key: "addDonationItem",
+    value: function addDonationItem() {
+      var current = this.state.donations;
+      current.push({
+        foodItem: '',
+        foodAmount: '',
+        foodMeasure: ''
+      });
+      this.setState({
+        donations: current
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card bg-light mb-3",
-        style: {
-          maxWidth: '36rem'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Food Item #1", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "button",
-        className: "close",
-        "aria-label": "Close"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "aria-hidden": "true"
-      }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "fooditem",
-        "aria-describedby": "whichfood",
-        placeholder: "Which food item are you donating?"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "number",
-        min: "1",
-        className: "form-control",
-        id: "fooditem",
-        "aria-describedby": "howmany",
-        placeholder: "How many?"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "fooditem",
-        "aria-describedby": "whatmeasure",
-        placeholder: "In what measure? e.g. servings, oz, lbs"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.donations.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card bg-light mb-3",
+          style: {
+            maxWidth: '36rem'
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-header"
+        }, "Food Item #", {
+          index: index
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "aria-label": "Close"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "card-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          className: "form-control",
+          id: "foodItem",
+          "aria-describedby": "which food",
+          placeholder: "Which food item are you donating?",
+          value: item.foodItem
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "number",
+          min: "1",
+          className: "form-control",
+          id: "numItem",
+          "aria-describedby": "how many",
+          placeholder: "How many?",
+          value: item.foodAmount
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          type: "text",
+          className: "form-control",
+          id: "measureItem",
+          "aria-describedby": "what measure",
+          placeholder: "In what measure? e.g. servings, oz, lbs",
+          value: item.foodMeasure
+        }))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-8"
@@ -61695,6 +61733,7 @@ function (_Component) {
         type: "button",
         className: "btn btn-default",
         "aria-label": "Add",
+        onClick: this.addDonationItem,
         style: {
           width: '50px',
           height: '50px'
@@ -61709,8 +61748,9 @@ function (_Component) {
         type: "button",
         className: "btn btn-link"
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "btn btn-primary"
+        type: "button",
+        className: "btn btn-primary",
+        onClick: this.goToPost
       }, "Next"))));
     }
   }]);

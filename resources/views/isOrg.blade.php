@@ -18,15 +18,15 @@
             <div class="card-body">
                 <h5 class="card-title">Business</h5>
                 <p class="card-text">You are large as a Fortune-500 corporation and or as small as a local shop. Either way, you can and want to help!</p>
-                <a class="btn btn-lg btn-block btn-outline-primary" href="{{url('register?type=business')}}" >Select</a>
+                <a class="btn btn-lg btn-block btn-outline-primary align-bottom" href="{{url('register?type=business')}}" >Select</a>
             </div>
         </div>
         <div class="card">
             <img src="{{asset('assets/heart.svg')}}" class="card-img-top align-self-center mt-4" style="max-width: 50%" alt="nonprofit">
             <div class="card-body">
                 <h5 class="card-title">Nonprofit</h5>
-                <p class="card-text">You have already been in the frontlines battling this issue and you know that platform will expand your reach.</p>
-                <a class="btn btn-lg btn-block btn-outline-primary" href="{{url('register?type=nonprofit')}}" >Select</a>
+                <p class="card-text">You have already been in the frontlines battling this issue and you know that platform will help expand your reach and make you more effective.</p>
+                <a class="btn btn-lg btn-block btn-outline-primary align-bottom" href="{{url('register?type=nonprofit')}}" >Select</a>
             </div>
         </div>
     </div>
