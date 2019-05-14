@@ -41,6 +41,8 @@ class FollowerController extends Controller
         $follower->FollowerId = $requester->UserId;
         $follower->FollowDate = date("Y-m-d H:i:s");
         $follower->save();
+
+        return redirect()->back();
     }
 
     /**

@@ -13,10 +13,12 @@
     <div class="card-header">
         <div class="row">
             <div class="media">
-                <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 50px; height: 50px"
-                    alt="image" src="{{isset($post->User->multimedia) ?
-                                         'data:' . $post->User->multimedia->MimeType . ';base64,' . base64_encode($post->User->multimedia->Media) :
-                                         asset('assets/user-purple.svg')}}">
+                <a href="{{url('/profile/' . $post->User->UserId)}}">
+                    <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 50px; height: 50px"
+                        alt="image" src="{{isset($post->User->multimedia) ?
+                                             'data:' . $post->User->multimedia->MimeType . ';base64,' . base64_encode($post->User->multimedia->Media) :
+                                             asset('assets/user-purple.svg')}}">
+                </a>
                 <div class="media-body">
                     <p class="card-text m-0">{{$post->User->UserName}}</p>
                     <p class="card-text m-0">{{$post->PostDate->toDayDateTimeString()}}</p>

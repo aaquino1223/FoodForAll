@@ -112,7 +112,7 @@
                                     <a href="{{url('/profile/' . $user->UserId . '/photos')}}" class="btn btn-light">Photos</a>
                                 @else
                                     <a href="{{url('/profile/' . $user->UserId)}}" class="btn btn-light">Timeline</a>
-                                    <a href="{{url('/profile/' . $user->UserId . '/associates')}}" class="btn btn-light">Associates <label class="m-0 ml-2">{{$user->followers()->count()}}</label></a>
+                                    <a href="{{url('/profile/' . $user->UserId . '/associates')}}" class="btn btn-light">Associates <label class="m-0 ml-2">{{$user->associates()->count()}}</label></a>
                                     <a href="{{url('/profile/' . $user->UserId . '/followers')}}" class="btn btn-light">Followers <label class="m-0 ml-2">{{$user->followers()->count()}}</label></a>
                                     <a href="{{url('/profile/' . $user->UserId . '/photos')}}" class="btn btn-light">Photos</a>
                                 @endif

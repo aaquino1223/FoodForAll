@@ -12,7 +12,17 @@
                         <div class="card m-2">
                             <div class="card-body">
                                 <div class="m-2">
-                                    <h5 class="card-text">{{$associate->UserName}}</h5>
+                                    <div class="media">
+                                        <a href="{{url('/profile/' . $associate->UserId)}}">
+                                            <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 50px; height: 50px"
+                                                 alt="image" src="{{isset($associate->multimedia) ?
+                                                     'data:' . $associate->multimedia->MimeType . ';base64,' . base64_encode($associate->multimedia->Media) :
+                                                     asset('assets/user-purple.svg')}}">
+                                        </a>
+                                        <div class="media-body">
+                                            <p class="card-text m-0">{{$associate->UserName}}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
