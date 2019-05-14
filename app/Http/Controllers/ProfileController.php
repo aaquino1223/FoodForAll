@@ -64,9 +64,19 @@ class ProfileController extends Controller
         }
         else {
             $multimedia = auth()->user()->Multimedia;
+            auth()->user()->UserMultimedia->delete();
+            $multimedia->delete();
+
+            $multimedia = new Multimedia();
+            $multimedia->MultiMediaTypeId = 1;
             $multimedia->Media = $content;
             $multimedia->MimeType = mime_content_type($request->profileImage->getPathName());
             $multimedia->save();
+
+            $userMultimedia = new UserMultimedia();
+            $userMultimedia->UserId = auth()->user()->UserId;
+            $userMultimedia->MultimediaId = $multimedia->MultiMediaId;
+            $userMultimedia->save();
         }
 
 
