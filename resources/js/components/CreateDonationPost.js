@@ -259,10 +259,10 @@ export default class CreateDonationPost extends Component {
                                     <a onClick={event => this.changePostType(1)} className="nav-link active" id="pills-donation-tab" data-toggle="pill" href="#pills-donation" role="tab" aria-controls="pills-donation" aria-selected="true">Donation</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a onClick={event => this.changePostType(2)} className="nav-link" id="pills-event-tab" data-toggle="pill" href="#pills-event" role="tab" aria-controls="pills-event" aria-selected="false">Event</a>
+                                    <a onClick={event => this.changePostType(3)} className="nav-link" id="pills-event-tab" data-toggle="pill" href="#pills-event" role="tab" aria-controls="pills-event" aria-selected="false">Event</a>
                                 </li>
                                 <li className="nav-item">
-                                    <a onClick={event => this.changePostType(3)} className="nav-link" id="pills-help-tab" data-toggle="pill" href="#pills-help" role="tab" aria-controls="pills-help" aria-selected="false">Help</a>
+                                    <a onClick={event => this.changePostType(2)} className="nav-link" id="pills-help-tab" data-toggle="pill" href="#pills-help" role="tab" aria-controls="pills-help" aria-selected="false">Help</a>
                                 </li>
                                 <li className="nav-item">
                                     <a onClick={event => this.changePostType(4)} className="nav-link" id="pills-other-tab" data-toggle="pill" href="#pills-other" role="tab" aria-controls="pills-other" aria-selected="false">Other</a>

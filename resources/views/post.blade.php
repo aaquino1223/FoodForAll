@@ -12,7 +12,7 @@
 <div class="card" style="margin-bottom: 20px">
     <div class="card-header">
         <div class="row">
-            <div class="media">
+            <div class="media col-10">
                 <a href="{{url('/profile/' . $post->User->UserId)}}">
                     <img class="mr-3 align-self-center ml-3 rounded-circle" style="width: 50px; height: 50px"
                         alt="image" src="{{isset($post->User->multimedia) ?
@@ -26,6 +26,21 @@
                         <h6 class="card-subtitle">{{$location}}</h6>
                     @endisset
                 </div>
+            </div>
+            <div class="col-2">
+                @if($post->PostTypeId == 1)
+                <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                     alt="image" src="{{asset('/assets/donation.svg')}}">
+                @elseif($post->PostTypeId == 2)
+                    <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                         alt="image" src="{{asset('/assets/help.svg')}}">
+                @elseif($post->PostTypeId == 3)
+                    <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                         alt="image" src="{{asset('/assets/event.svg')}}">
+                @elseif($post->PostTypeId == 4)
+                    <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                         alt="image" src="{{asset('/assets/other-post.svg')}}">
+                @endif
             </div>
         </div>
     </div>

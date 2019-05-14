@@ -61523,7 +61523,7 @@ module.exports = "/images/adding.svg?c6f27a7e8da267e8f7c3b4a08e78c300";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/camera.svg?0225c7f4ead42e9e4fd561816a8724f6";
+module.exports = "/images/camera.svg?03e7843f36d1e4f2528840115a67b0ae";
 
 /***/ }),
 
@@ -61534,7 +61534,7 @@ module.exports = "/images/camera.svg?0225c7f4ead42e9e4fd561816a8724f6";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/images/pin.svg?05e3ab3378500bdb867b7785a62faff4";
+module.exports = "/images/pin.svg?4b0ff2f316d7dd9a40e222619ddddcd9";
 
 /***/ }),
 
@@ -62078,7 +62078,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this5.changePostType(2);
+          return _this5.changePostType(3);
         },
         className: "nav-link",
         id: "pills-event-tab",
@@ -62091,7 +62091,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this5.changePostType(3);
+          return _this5.changePostType(2);
         },
         className: "nav-link",
         id: "pills-help-tab",
@@ -62149,8 +62149,8 @@ if (document.getElementById('donationForm')) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/FoodForAll/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/FoodForAll/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\wamp64\www\FoodForAll\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\wamp64\www\FoodForAll\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
