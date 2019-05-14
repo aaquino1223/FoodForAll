@@ -61695,12 +61695,15 @@ function (_Component) {
       viewRestrictionTypes: [],
       ViewRestrictionType: null,
       Title: '',
-      Message: ''
+      Message: '',
+      errors: []
     };
     _this.addDonationItem = _this.addDonationItem.bind(_assertThisInitialized(_this));
     _this.goToPost = _this.goToPost.bind(_assertThisInitialized(_this));
     _this.handleTitleChange = _this.handleTitleChange.bind(_assertThisInitialized(_this));
     _this.handleMessageChange = _this.handleMessageChange.bind(_assertThisInitialized(_this));
+    _this.handleCreateNewPost = _this.handleCreateNewPost.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -61768,7 +61771,7 @@ function (_Component) {
     key: "changeViewRestrictionType",
     value: function changeViewRestrictionType(viewRestrictionTypeId) {
       var viewRestrictionType = this.state.viewRestrictionTypes.find(function (type) {
-        return type.ViewRestrictionTypeId == viewRestrictionTypeId;
+        return type.ViewRestrictionTypeId === viewRestrictionTypeId;
       });
       this.setState({
         ViewRestrictionType: viewRestrictionType
@@ -61814,9 +61817,45 @@ function (_Component) {
       });
     }
   }, {
+    key: "handleCreateNewPost",
+    value: function handleCreateNewPost(event) {
+      var _this3 = this;
+
+      var post = {
+        Title: this.state.Title,
+        Message: this.state.Message,
+        ViewRestrictionTypeId: this.state.ViewRestrictionType.ViewRestrictionTypeId,
+        PostTypeId: this.state.postType
+      };
+      var data = {
+        post: post
+      };
+
+      if (this.state.postType === 1) {
+        data.donations = this.state.donations;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/post', data).then(function (response) {
+        window.location.reload(); //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+
+        _this3.setState({
+          errors: error.response.data.errors
+        });
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "invalid-feedback"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.state.errors));
+    }
+  }, {
     key: "ShowForm",
     value: function ShowForm() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (this.state.addingDonations && this.state.postType === 1) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.donations.map(function (item, index) {
@@ -61833,7 +61872,7 @@ function (_Component) {
             className: "close",
             "aria-label": "Close",
             onClick: function onClick(event) {
-              return _this3.removeDonationItem(index);
+              return _this4.removeDonationItem(index);
             }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
             "aria-hidden": "true"
@@ -61850,7 +61889,7 @@ function (_Component) {
             value: item.foodItem,
             required: true,
             onChange: function onChange(event) {
-              return _this3.handleFoodItemChange(index, event);
+              return _this4.handleFoodItemChange(index, event);
             }
           })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "form-group"
@@ -61863,7 +61902,7 @@ function (_Component) {
             placeholder: "How many?",
             value: item.foodAmount,
             onChange: function onChange(event) {
-              return _this3.handleFoodAmountChange(index, event);
+              return _this4.handleFoodAmountChange(index, event);
             }
           })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "form-group"
@@ -61875,7 +61914,7 @@ function (_Component) {
             placeholder: "In what measure? e.g. servings, oz, lbs",
             value: item.foodMeasure,
             onChange: function onChange(event) {
-              return _this3.handleFoodMeasureChange(index, event);
+              return _this4.handleFoodMeasureChange(index, event);
             }
           }))));
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61929,7 +61968,7 @@ function (_Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
             key: viewRestrictionType.ViewRestrictionTypeId,
             onClick: function onClick(event) {
-              return _this3.changeViewRestrictionType(viewRestrictionType.ViewRestrictionTypeId);
+              return _this4.changeViewRestrictionType(viewRestrictionType.ViewRestrictionTypeId);
             },
             className: "dropdown-item",
             href: "#"
@@ -62010,9 +62049,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleCreateNewPost
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
@@ -62024,7 +62065,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this4.changePostType(1);
+          return _this5.changePostType(1);
         },
         className: "nav-link active",
         id: "pills-donation-tab",
@@ -62037,7 +62078,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this4.changePostType(2);
+          return _this5.changePostType(2);
         },
         className: "nav-link",
         id: "pills-event-tab",
@@ -62050,7 +62091,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this4.changePostType(3);
+          return _this5.changePostType(3);
         },
         className: "nav-link",
         id: "pills-help-tab",
@@ -62063,7 +62104,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this4.changePostType(4);
+          return _this5.changePostType(4);
         },
         className: "nav-link",
         id: "pills-other-tab",

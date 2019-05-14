@@ -36,6 +36,7 @@ Route::get('/profile/{profile}/followers', 'FollowerController@index')->middlewa
 Route::post('/profile/{profile}/followers', 'FollowerController@create')->middleware('auth');
 
 Route::get('/post', 'PostController@index')->middleware('auth');
+Route::post('/post', 'PostController@store')->middleware('auth');
 
 Auth::routes();
 

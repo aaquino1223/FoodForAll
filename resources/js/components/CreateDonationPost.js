@@ -18,12 +18,15 @@ export default class CreateDonationPost extends Component {
             viewRestrictionTypes: [],
             ViewRestrictionType: null,
             Title: '',
-            Message: ''
+            Message: '',
+            errors: []
         };
         this.addDonationItem = this.addDonationItem.bind(this);
         this.goToPost = this.goToPost.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleMessageChange = this.handleMessageChange.bind(this);
+        this.handleCreateNewPost = this.handleCreateNewPost.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);
     }
 
     handleFoodItemChange(index, event) {
@@ -67,7 +70,7 @@ export default class CreateDonationPost extends Component {
 
     changeViewRestrictionType(viewRestrictionTypeId) {
         let viewRestrictionType = this.state.viewRestrictionTypes.find((type) => {
-            return type.ViewRestrictionTypeId == viewRestrictionTypeId
+            return type.ViewRestrictionTypeId === viewRestrictionTypeId
         });
         this.setState({ViewRestrictionType: viewRestrictionType});
     }
@@ -99,6 +102,43 @@ export default class CreateDonationPost extends Component {
                 ViewRestrictionType: response.data[0]
             });
         })
+    }
+
+    handleCreateNewPost (event) {
+        const post = {
+            Title: this.state.Title,
+            Message: this.state.Message,
+            ViewRestrictionTypeId: this.state.ViewRestrictionType.ViewRestrictionTypeId,
+            PostTypeId: this.state.postType
+        };
+
+        const data = {
+            post: post
+        };
+
+        if (this.state.postType === 1) {
+            data.donations = this.state.donations;
+        }
+
+        axios.post('/post', data)
+            .then(response => {
+                window.location.reload();
+                //console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+                this.setState({
+                    errors: error.response.data.errors
+                })
+            })
+    }
+
+    renderErrors() {
+            return (
+                <span className='invalid-feedback'>
+              <strong>{this.state.errors}</strong>
+            </span>
+            )
     }
 
     ShowForm() {
@@ -211,7 +251,7 @@ export default class CreateDonationPost extends Component {
     render() {
         return (
             <div >
-                <form>
+                <form onSubmit={this.handleCreateNewPost}>
                     <div className="card">
                         <div className="card-header">
                             <ul className="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
