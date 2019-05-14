@@ -17,6 +17,8 @@ class PostType extends Model
      */
     protected $table = 'posttype';
 
+    public $timestamps = false;
+
     /**
      * The primary key for the model.
      * 

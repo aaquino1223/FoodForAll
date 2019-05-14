@@ -61645,6 +61645,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
@@ -61670,6 +61672,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var CreateDonationPost =
 /*#__PURE__*/
 function (_Component) {
@@ -61688,10 +61691,19 @@ function (_Component) {
         foodItem: '',
         foodAmount: '',
         foodMeasure: ''
-      }]
+      }],
+      viewRestrictionTypes: [],
+      ViewRestrictionType: null,
+      Title: '',
+      Message: '',
+      errors: []
     };
     _this.addDonationItem = _this.addDonationItem.bind(_assertThisInitialized(_this));
     _this.goToPost = _this.goToPost.bind(_assertThisInitialized(_this));
+    _this.handleTitleChange = _this.handleTitleChange.bind(_assertThisInitialized(_this));
+    _this.handleMessageChange = _this.handleMessageChange.bind(_assertThisInitialized(_this));
+    _this.handleCreateNewPost = _this.handleCreateNewPost.bind(_assertThisInitialized(_this));
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -61706,6 +61718,20 @@ function (_Component) {
       });
       this.setState({
         donations: newDonations
+      });
+    }
+  }, {
+    key: "handleTitleChange",
+    value: function handleTitleChange(event) {
+      this.setState({
+        Title: event.target.value
+      });
+    }
+  }, {
+    key: "handleMessageChange",
+    value: function handleMessageChange(event) {
+      this.setState({
+        Message: event.target.value
       });
     }
   }, {
@@ -61742,6 +61768,16 @@ function (_Component) {
       });
     }
   }, {
+    key: "changeViewRestrictionType",
+    value: function changeViewRestrictionType(viewRestrictionTypeId) {
+      var viewRestrictionType = this.state.viewRestrictionTypes.find(function (type) {
+        return type.ViewRestrictionTypeId === viewRestrictionTypeId;
+      });
+      this.setState({
+        ViewRestrictionType: viewRestrictionType
+      });
+    }
+  }, {
     key: "goToPost",
     value: function goToPost() {
       this.setState({
@@ -61769,9 +61805,57 @@ function (_Component) {
       });
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/post').then(function (response) {
+        _this2.setState({
+          viewRestrictionTypes: response.data,
+          ViewRestrictionType: response.data[0]
+        });
+      });
+    }
+  }, {
+    key: "handleCreateNewPost",
+    value: function handleCreateNewPost(event) {
+      var _this3 = this;
+
+      var post = {
+        Title: this.state.Title,
+        Message: this.state.Message,
+        ViewRestrictionTypeId: this.state.ViewRestrictionType.ViewRestrictionTypeId,
+        PostTypeId: this.state.postType
+      };
+      var data = {
+        post: post
+      };
+
+      if (this.state.postType === 1) {
+        data.donations = this.state.donations;
+      }
+
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/post', data).then(function (response) {
+        window.location.reload(); //console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+
+        _this3.setState({
+          errors: error.response.data.errors
+        });
+      });
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "invalid-feedback"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.state.errors));
+    }
+  }, {
     key: "ShowForm",
     value: function ShowForm() {
-      var _this2 = this;
+      var _this4 = this;
 
       if (this.state.addingDonations && this.state.postType === 1) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.donations.map(function (item, index) {
@@ -61788,7 +61872,7 @@ function (_Component) {
             className: "close",
             "aria-label": "Close",
             onClick: function onClick(event) {
-              return _this2.removeDonationItem(index);
+              return _this4.removeDonationItem(index);
             }
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
             "aria-hidden": "true"
@@ -61805,7 +61889,7 @@ function (_Component) {
             value: item.foodItem,
             required: true,
             onChange: function onChange(event) {
-              return _this2.handleFoodItemChange(index, event);
+              return _this4.handleFoodItemChange(index, event);
             }
           })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "form-group"
@@ -61818,7 +61902,7 @@ function (_Component) {
             placeholder: "How many?",
             value: item.foodAmount,
             onChange: function onChange(event) {
-              return _this2.handleFoodAmountChange(index, event);
+              return _this4.handleFoodAmountChange(index, event);
             }
           })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "form-group"
@@ -61830,7 +61914,7 @@ function (_Component) {
             placeholder: "In what measure? e.g. servings, oz, lbs",
             value: item.foodMeasure,
             onChange: function onChange(event) {
-              return _this2.handleFoodMeasureChange(index, event);
+              return _this4.handleFoodMeasureChange(index, event);
             }
           }))));
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61877,19 +61961,19 @@ function (_Component) {
           "data-toggle": "dropdown",
           "aria-haspopup": "true",
           "aria-expanded": "false"
-        }, "Anyone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, this.state.ViewRestrictionType != null ? this.state.ViewRestrictionType.Description : 'Everyone'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "dropdown-menu",
           "aria-labelledby": "dropdownMenuButton"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          className: "dropdown-item",
-          href: "#"
-        }, "Anyone"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          className: "dropdown-item",
-          href: "#"
-        }, "Associate Only"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          className: "dropdown-item",
-          href: "#"
-        }, "Associates & Followers")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, this.state.viewRestrictionTypes.map(function (viewRestrictionType) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            key: viewRestrictionType.ViewRestrictionTypeId,
+            onClick: function onClick(event) {
+              return _this4.changeViewRestrictionType(viewRestrictionType.ViewRestrictionTypeId);
+            },
+            className: "dropdown-item",
+            href: "#"
+          }, viewRestrictionType.Description);
+        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: "text",
@@ -61897,7 +61981,9 @@ function (_Component) {
           id: "exampleTitle",
           maxLength: "50",
           "aria-describedby": "titleHelp",
-          placeholder: "Title/Subject"
+          placeholder: "Title/Subject",
+          value: this.state.Title,
+          onChange: this.handleTitleChange
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-group"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
@@ -61905,7 +61991,9 @@ function (_Component) {
           id: "exampleFormControlTextarea1",
           maxLength: "500",
           rows: "3",
-          placeholder: "Anything else to add?"
+          placeholder: "Anything else to add?",
+          value: this.state.Message,
+          onChange: this.handleMessageChange
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "row"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -61950,7 +62038,8 @@ function (_Component) {
           className: "col-4 align-self-center"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
-          className: "btn btn-link"
+          className: "btn btn-link",
+          "data-dismiss": "modal"
         }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "btn btn-primary"
@@ -61960,9 +62049,11 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleCreateNewPost
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-header"
@@ -61974,7 +62065,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this3.changePostType(1);
+          return _this5.changePostType(1);
         },
         className: "nav-link active",
         id: "pills-donation-tab",
@@ -61987,7 +62078,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this3.changePostType(2);
+          return _this5.changePostType(2);
         },
         className: "nav-link",
         id: "pills-event-tab",
@@ -62000,7 +62091,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this3.changePostType(3);
+          return _this5.changePostType(3);
         },
         className: "nav-link",
         id: "pills-help-tab",
@@ -62013,7 +62104,7 @@ function (_Component) {
         className: "nav-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: function onClick(event) {
-          return _this3.changePostType(4);
+          return _this5.changePostType(4);
         },
         className: "nav-link",
         id: "pills-other-tab",

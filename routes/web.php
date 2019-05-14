@@ -35,6 +35,9 @@ Route::put('/profile/{profile}/associates', 'AssociateController@update')->middl
 Route::get('/profile/{profile}/followers', 'FollowerController@index')->middleware('auth');
 Route::post('/profile/{profile}/followers', 'FollowerController@create')->middleware('auth');
 
+Route::get('/post', 'PostController@index')->middleware('auth');
+Route::post('/post', 'PostController@store')->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
