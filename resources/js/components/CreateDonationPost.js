@@ -225,6 +225,17 @@ export default class CreateDonationPost extends Component {
                                   placeholder="Anything else to add?" value={this.state.Message}
                                   onChange={this.handleMessageChange}/>
                     </div>
+                    {/*<div className="form-group">*/}
+                    {/*    {*/}
+                    {/*        this.state.postType === 1 ?*/}
+                    {/*            <ul>*/}
+                    {/*                {this.state.donations.map((donation, index) => {*/}
+                    {/*                    return (<li key={index}>{donation.foodItem}</li>)*/}
+                    {/*                })}*/}
+                    {/*            </ul> : <div/>*/}
+
+                    {/*    }*/}
+                    {/*</div>*/}
                     <div className="row">
                         <div className="col-8">
                             <button type="button" className="btn btn-default" aria-label="Picture"

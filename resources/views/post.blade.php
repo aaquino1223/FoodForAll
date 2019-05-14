@@ -29,16 +29,16 @@
             </div>
             <div class="col-2">
                 @if($post->PostTypeId == 1)
-                <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                <img class="mr-3 align-self-center ml-3 " style="width: 25px; height: 25px"
                      alt="image" src="{{asset('/assets/donation.svg')}}">
                 @elseif($post->PostTypeId == 2)
-                    <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                    <img class="mr-3 align-self-center ml-3 " style="width: 25px; height: 25px"
                          alt="image" src="{{asset('/assets/help.svg')}}">
                 @elseif($post->PostTypeId == 3)
-                    <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                    <img class="mr-3 align-self-center ml-3 " style="width: 25px; height: 25px"
                          alt="image" src="{{asset('/assets/event.svg')}}">
                 @elseif($post->PostTypeId == 4)
-                    <img class="mr-3 align-self-center ml-3 " style="width: 50px; height: 50px"
+                    <img class="mr-3 align-self-center ml-3 " style="width: 25px; height: 25px"
                          alt="image" src="{{asset('/assets/other-post.svg')}}">
                 @endif
             </div>
